@@ -1,36 +1,45 @@
-#3 sum
+#3 sum - [https://leetcode.com/problems/3sum/description/]
+#time complexity: O(n^2)
+#space complexity: O(n)
 
 def threeSum(nums):
     nums.sort()
-    n = len(nums)
     result = []
-    
+
+    n = len(nums)
+
     for i in range(n):
-        if i > 0 and nums[i] == nums[i - 1]: continue
-        
-        left = i + 1
-        right = n - 1
-        
-        while left < right:
-            total = nums[i] + nums[left] + nums[right]
+        #skip dublicate
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
             
+        #first position
+        left = i + 1
+        #last position
+        right = n - 1
+
+        while left < right:
+            #cal sum
+            total = nums[i] + nums[left] + nums[right]
+
             if total == 0:
                 result.append([nums[i], nums[left], nums[right]])
-                
+
                 left += 1
                 right -= 1
-                
-                
+
                 while left < right and nums[left] == nums[left - 1]:
                     left += 1
+                
                 while left < right and nums[right] == nums[right + 1]:
                     right -= 1
             elif total < 0:
-                left += 1
+                left +=1
             else:
                 right -= 1
-    return result
+                
+        return result
 
-nums = list(map(int, input("Enter nums elements: ").split()))
-print(threeSum(nums))
-                 
+nums = [-1,0,1,2,-1,-4]
+result = threeSum(nums)
+print(result)
