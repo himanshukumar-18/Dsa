@@ -6,21 +6,18 @@
 def lengthOfLongestSubstring(s):
     
     charSet = set()
-    
     left = 0
-    maxLength = 0
+    length = 0
     
     for right in range(len(s)):
-        
         while s[right] in charSet:
             charSet.remove(s[left])
             left += 1
         
         charSet.add(s[right])
-        maxLength = max(maxLength, right - left + 1)
+        length = max(length, right - left + 1)
     
-    return maxLength
+    return length
 
 s = "abcabcbb"
-result = lengthOfLongestSubstring(s)
-print(result)
+print(lengthOfLongestSubstring(s))
